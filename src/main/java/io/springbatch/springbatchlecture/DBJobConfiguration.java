@@ -27,6 +27,7 @@ public class DBJobConfiguration {
                 .build();
     }
 
+    @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
                 .tasklet(new Tasklet() {
@@ -38,6 +39,7 @@ public class DBJobConfiguration {
                 .build();
     }
 
+    @Bean
     public Step step2() {
         return stepBuilderFactory.get("step2")
                 .tasklet(new Tasklet() {
