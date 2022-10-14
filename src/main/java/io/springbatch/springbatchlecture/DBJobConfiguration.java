@@ -20,16 +20,16 @@ public class DBJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job job() {
-        return jobBuilderFactory.get("job")
-                .start(step1())
-                .next(step2())
+    public Job dbJob() {
+        return jobBuilderFactory.get("dbJob")
+                .start(dbStep1())
+                .next(dbStep2())
                 .build();
     }
 
     @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
+    public Step dbStep1() {
+        return stepBuilderFactory.get("dbStep1")
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
@@ -40,8 +40,8 @@ public class DBJobConfiguration {
     }
 
     @Bean
-    public Step step2() {
-        return stepBuilderFactory.get("step2")
+    public Step dbStep2() {
+        return stepBuilderFactory.get("dbStep2")
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
