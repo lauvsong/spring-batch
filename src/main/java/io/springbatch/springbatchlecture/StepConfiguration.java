@@ -23,7 +23,7 @@ public class StepConfiguration {
     public Job stepJob() {
         return this.jobBuilderFactory.get("stepJob")
                 .start(step1())
-                .start(step2())
+                .next(step2())
                 .build();
     }
 
