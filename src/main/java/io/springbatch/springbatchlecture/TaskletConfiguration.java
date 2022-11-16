@@ -41,4 +41,10 @@ public class TaskletConfiguration {
                 .build();
     }
 
+    @Bean
+    public Step step2() {
+        return stepBuilderFactory.get("step2")
+                .tasklet(new CustomTasklet())
+                .build();
+    }
 }
