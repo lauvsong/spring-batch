@@ -28,7 +28,7 @@ public class TaskletStepConfiguration {
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
-                .start(taskletStep())
+                .start(chunkStep())
                 .build();
     }
 
@@ -45,4 +45,23 @@ public class TaskletStepConfiguration {
                 .build();
     }
 
+    @Bean
+    public Step chunkStep() {
+        return stepBuilderFactory.get("chunkStep")
+                .<String, String>chunk(10)
+                .reader(new ListItemReader<>(Arrays.asList("item1", "item2", "item3", "item4", "item5")))
+                .processor(new ItemProcessor<String, String>() {
+                    @Override
+                    public String process(String item) throws Exception {
+                        return item.toUpperCase();
+                    }
+                })
+                .writer(new ItemWriter<String>() {
+                    @Override
+                    public void write(List<? extends String> items) throws Exception {
+                        items.forEach(item -> System.out.println(item));
+                    }
+                })
+                .build();
+    }
 }
