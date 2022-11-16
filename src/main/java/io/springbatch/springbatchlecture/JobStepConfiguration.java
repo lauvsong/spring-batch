@@ -67,7 +67,8 @@ public class JobStepConfiguration {
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                        return RepeatStatus.FINISHED;
+                        throw new RuntimeException("step1 was failed");
+//                        return RepeatStatus.FINISHED;
                     }
                 })
                 .build();
