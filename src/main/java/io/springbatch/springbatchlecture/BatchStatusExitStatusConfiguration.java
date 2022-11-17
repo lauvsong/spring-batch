@@ -1,6 +1,7 @@
 package io.springbatch.springbatchlecture;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -39,6 +40,7 @@ public class BatchStatusExitStatusConfiguration {
         return stepBuilderFactory.get("step2")
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println(">> step2 has executed");
+                    contribution.setExitStatus(ExitStatus.FAILED);
                     return RepeatStatus.FINISHED;
                 })
                 .build();
