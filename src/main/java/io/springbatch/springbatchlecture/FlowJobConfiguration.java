@@ -37,7 +37,8 @@ public class FlowJobConfiguration {
                     @Override
                     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
                         System.out.println("step1 was executed");
-                        return RepeatStatus.FINISHED;
+                        throw new RuntimeException("step1 failed");
+//                        return RepeatStatus.FINISHED;
                     }
                 })
                 .build();
