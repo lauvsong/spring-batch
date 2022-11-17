@@ -96,7 +96,8 @@ public class StartNextConfiguration {
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                        return RepeatStatus.FINISHED;
+                        throw new RuntimeException("step4 was failed");
+//                        return RepeatStatus.FINISHED;
                     }
                 })
                 .build();
