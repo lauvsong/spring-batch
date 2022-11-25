@@ -21,7 +21,9 @@ public class BatchStatusExitStatusConfiguration {
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
                 .start(step1())
-                .next(step2())
+                .on("FAILED") // FAILED 일 경우
+                .to(step2())
+                .end()
                 .build();
     }
 
@@ -30,7 +32,7 @@ public class BatchStatusExitStatusConfiguration {
         return stepBuilderFactory.get("step1")
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println(">> step1 has executed");
-                    return RepeatStatus.FINISHED;
+                    throw new RuntimeException("step1 failed");
                 })
                 .build();
     }
