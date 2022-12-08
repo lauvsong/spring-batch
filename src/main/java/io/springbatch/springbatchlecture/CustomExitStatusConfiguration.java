@@ -45,7 +45,6 @@ public class CustomExitStatusConfiguration {
         return stepBuilderFactory.get("step2")
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println(">> step2 has executed");
-                    contribution.getStepExecution().setExitStatus(ExitStatus.FAILED);
                     return RepeatStatus.FINISHED;
                 })
                 .listener(new PassCheckListener())

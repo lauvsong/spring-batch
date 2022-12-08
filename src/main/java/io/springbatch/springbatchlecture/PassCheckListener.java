@@ -7,6 +7,11 @@ import org.springframework.batch.core.StepExecutionListener;
 public class PassCheckListener implements StepExecutionListener {
 
     @Override
+    public void beforeStep(StepExecution stepExecution) {
+
+    }
+
+    @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
 
         String exitcode = stepExecution.getExitStatus().getExitCode();
